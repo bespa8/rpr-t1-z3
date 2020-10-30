@@ -1,0 +1,46 @@
+package ba.unsa.etf.rpr;
+
+public class Sat {
+    int sati,minute,sekunde;
+    public Sat(int sati,int minute,int sekunde) {
+        Postavi(sati,minute,sekunde);
+    }
+    public void Postavi (int s,int m,int sek) {
+        this.sati = s;
+        this.minute = m;
+        this.sekunde = sek;
+    }
+    public void Sljedeci () {
+        sekunde++;
+        if (sekunde == 60) {
+            minute++;
+            sekunde = 0;
+        }
+        if (minute == 60) {
+            sati++;
+            minute=0;
+        }
+        if (sati == 24) {
+            sati = 0;
+        }
+    }
+    public void Prethodni() {
+        sekunde--;
+        if (sekunde==-1) { sekunde=59; minute--; }
+        if (minute==-1) { minute=59; sati--; }
+        if (sati==-1) sati=23;
+    }
+    public void PomjeriZa(int pomak) {
+        if (pomak>0) for (int i=0; i<pomak; i++) Sljedeci();
+		else {
+            pomak = pomak * (-1);
+            for (int i = 0; i < pomak; i++) Prethodni();
+        }
+    }
+    int DajSate()  { return sati; }
+    int DajMinute()  { return minute; }
+    int DajSekunde() { return sekunde; }
+    void Ispisi() { System.out.println(sati + ":" + minute + ":" + sekunde); }
+
+};
+
